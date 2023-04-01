@@ -1,0 +1,7 @@
+@import "../styles/variables.module.scss";
+
+.navBarButtons {
+    display: flex;
+    gap: $spacer-wide;
+    margin-right: 20px;
+}

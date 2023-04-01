@@ -1,5 +1,6 @@
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
+import styles from "./NavBar.module.scss";
 
 const NavBar = () => (
   <AppBar position="sticky" color="secondary">
@@ -14,10 +15,14 @@ const NavBar = () => (
           <div style={{ fontFamily: "Valorant" }}>VPSA</div>
         </Link>
       </Typography>
-      <Button color="inherit">
-        <Link href="/about">About</Link>
-      </Button>
-      <Button color="inherit">Login</Button>
+      <div className={styles.navBarButtons}>
+        <Link href="/about">
+          <Button color="inherit">About</Button>
+        </Link>
+        <Button variant="contained" color="primary">
+          Login
+        </Button>
+      </div>
     </Toolbar>
   </AppBar>
 );

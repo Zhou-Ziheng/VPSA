@@ -16,7 +16,7 @@ const roboto = Roboto({
 
 const theme = createTheme({
   palette: {
-    primary: { main: styles.green },
+    primary: { main: styles.lightgreen },
     secondary: { main: styles.darkgray },
   },
   typography: {

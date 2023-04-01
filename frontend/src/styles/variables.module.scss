@@ -1,9 +1,11 @@
 $black: #151211;
-$darkgray: #303030;
+$darkgray: #313131;
 $gray: #e8e1ee;
 $lightgreen: #3be0c3;
 $green: #16b199;
 $darkgreen: #38646b;
+$spacer-1: 5px;
+$spacer-wide: 20px;
 
 :export {
     black : $black;
@@ -12,4 +14,6 @@ $darkgreen: #38646b;
     green : $green;
     darkgray : $darkgray;
     darkgreen : $darkgreen;
+    spacer-1: $spacer-1;
+    spacer-wide: $spacer-wide;
    }
