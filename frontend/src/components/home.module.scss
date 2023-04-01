@@ -7,9 +7,15 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    gap: $spacer-regular;
 }
 
 .title {
     font-family:"Valorant";
     font-size: 50px;
 }
+
+.search {
+    width: 500px;
+}
+
