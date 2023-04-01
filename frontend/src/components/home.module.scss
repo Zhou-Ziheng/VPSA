@@ -8,14 +8,27 @@
     justify-content: center;
     height: 100%;
     gap: $spacer-regular;
-    flex-grow: "1 1 auto",
+    flex-grow: "1 1 auto";
+    position: relative;
+    width: 100%;
 }
 
 .title {
     font-family:"Valorant";
+    z-index: 100;
 }
 
 .search {
     width: 500px;
+}
+
+.search {
+    width: 500px;
+}
+
+.sage-div{
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
