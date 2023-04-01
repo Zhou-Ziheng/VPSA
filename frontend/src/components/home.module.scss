@@ -1,0 +1,15 @@
+@import '../styles/variables.module.scss';
+
+.home-background {
+    display: flex;
+    flex-direction: column;
+    color: $lightgreen;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.title {
+    font-family:"Valorant";
+    font-size: 50px;
+}

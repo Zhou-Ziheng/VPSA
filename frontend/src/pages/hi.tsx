@@ -1,2 +1,2 @@
-const HelloWorld = () => <div>Hello!</div>;
-export default HelloWorld;
+const hi = () => <div>sdfgdsfgdsfg</div>;
+export default hi;

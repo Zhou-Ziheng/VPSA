@@ -1,6 +1,55 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import Layout from "@/components/Layout";
+import "@/styles/globals.scss";
+import styles from "@/styles/variables.module.scss";
+import { ThemeProvider, createTheme } from "@mui/material";
+import type { AppProps } from "next/app";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const theme = createTheme({
+  palette: {
+    primary: { main: styles.green },
+    secondary: { main: styles.black },
+  },
+  typography: {
+    fontFamily: ["roboto"].join(","),
+  },
+});
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider theme={theme}>
+      <main
+        className={roboto.className}
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Layout>
+          <div
+            style={{
+              backgroundColor: styles.black,
+              flex: "1 1 auto",
+              display: "flex",
+              flexDirection: "column",
+              alignContent: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Component {...pageProps} />
+          </div>
+        </Layout>
+      </main>
+    </ThemeProvider>
+  );
 }
