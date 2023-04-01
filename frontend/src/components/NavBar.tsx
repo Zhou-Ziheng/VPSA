@@ -12,10 +12,13 @@ const NavBar = () => (
         sx={{ flexGrow: 1 }}
       >
         <Link href="/">
-          <div style={{ fontFamily: "Valorant" }}>VPSA</div>
+          <h3 style={{ fontFamily: "Valorant" }}>VPSA</h3>
         </Link>
       </Typography>
       <div className={styles.navBarButtons}>
+        <Link href="/about">
+          <Button color="inherit">Resources</Button>
+        </Link>
         <Link href="/about">
           <Button color="inherit">About</Button>
         </Link>

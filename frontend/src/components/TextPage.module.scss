@@ -1,0 +1,15 @@
+@use "sass:math";
+@import "../styles/variables.module.scss";
+
+
+.TextPage {
+    background-color: $darkgray;
+    min-width: 1000px;
+    padding-left: $padding-side;
+    padding-right: $padding-side;
+    padding-top: $padding-top;
+    padding-bottom: $padding-top;
+    display: flex;
+    flex-direction: column;
+    gap: $spacer-regular;
+}

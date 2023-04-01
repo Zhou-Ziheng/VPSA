@@ -43,8 +43,8 @@ export default function App({ Component, pageProps }: AppProps) {
               flex: "1 1 auto",
               display: "flex",
               flexDirection: "column",
-              alignContent: "center",
-              justifyContent: "center",
+              flexBasis: 0,
+              alignItems: "center",
             }}
           >
             <Component {...pageProps} />

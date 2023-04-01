@@ -1,12 +1,15 @@
 $black: #151211;
 $darkgray: #313131;
 $gray: #e8e1ee;
+$text-color: #acacac;
 $lightgreen: #3be0c3;
 $green: #16b199;
 $darkgreen: #38646b;
 $spacer-1: 5px;
 $spacer-regular: 25px;
 $spacer-wide: 50px;
+$padding-top: 50px;
+$padding-side: 100px;
 
 :export {
   black: $black;
@@ -18,4 +21,7 @@ $spacer-wide: 50px;
   spacer-1: $spacer-1;
   spacer-wide: $spacer-wide;
   spacer-regular: $spacer-regular;
+  padding-side:$padding-side;
+  padding-top: $padding-top;
+  text-color: $text-color;
 }

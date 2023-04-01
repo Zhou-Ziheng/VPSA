@@ -8,11 +8,11 @@
     justify-content: center;
     height: 100%;
     gap: $spacer-regular;
+    flex-grow: "1 1 auto",
 }
 
 .title {
     font-family:"Valorant";
-    font-size: 50px;
 }
 
 .search {
