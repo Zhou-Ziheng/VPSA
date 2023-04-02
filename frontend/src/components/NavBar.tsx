@@ -17,11 +17,13 @@ const NavBar = () => (
       </Typography>
       <div className={styles.navBarButtons}>
         <Link href="/about">
-          <Button color="inherit">Resources</Button>
-        </Link>
-        <Link href="/about">
           <Button color="inherit">About</Button>
         </Link>
+
+        <Link href="/resources">
+          <Button color="inherit">Resources</Button>
+        </Link>
+        
         <Button variant="contained" color="primary">
           Login
         </Button>
