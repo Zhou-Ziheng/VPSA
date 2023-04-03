@@ -1,6 +1,9 @@
 import React, { PropsWithChildren } from "react";
 import Navbar from "./NavBar";
+import Footer from "./Footer";
 import Head from "next/head";
+import styles from "./Layout.module.scss";
+
 const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
@@ -10,6 +13,7 @@ const Layout = ({ children }: PropsWithChildren) => {
       </Head>
       <Navbar />
       {children}
+      <Footer />
     </>
   );
 };

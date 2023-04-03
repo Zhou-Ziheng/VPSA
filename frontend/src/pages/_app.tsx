@@ -31,6 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <main
         className={roboto.className}
         style={{
+          backgroundColor: styles.black,
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
@@ -39,7 +40,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <Layout>
           <div
             style={{
-              backgroundColor: styles.black,
               flex: "1 1 auto",
               display: "flex",
               flexDirection: "column",
