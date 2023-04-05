@@ -23,6 +23,10 @@ const NavBar = () => (
         <Link href="/resources">
           <Button color="inherit">Resources</Button>
         </Link>
+
+        <Link href="/failed">
+          <Button color="inherit">404</Button>
+        </Link>
         
         <Button variant="contained" color="primary">
           Login
