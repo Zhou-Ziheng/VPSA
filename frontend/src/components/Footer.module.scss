@@ -1,0 +1,13 @@
+@import '../styles/variables.module.scss';
+
+.footer {
+    margin-left: $padding-side;
+    margin-right: $padding-side;
+    margin-bottom: $padding-top;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.disclamer {
+    font-size: 13px;
+}
