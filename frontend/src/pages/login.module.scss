@@ -1,0 +1,14 @@
+@use "sass:math";
+@import "../styles/variables.module.scss";
+
+.Login-Register {
+    display: flex;
+    justify-content: center;
+}
+
+.Login-Input {
+    width: 50ch;
+}.Login-Submit {
+    width: 40ch;
+}
+

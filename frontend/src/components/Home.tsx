@@ -4,11 +4,12 @@ import styles from "./home.module.scss";
 import { useState } from "react";
 import Image from "next/image";
 import SageBackground from "../../public/background.png";
+import GraphicalPage from "./GraphicalPage";
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   return (
-    <div className={styles["home-background"]}>
+    <GraphicalPage>
       <div className={styles["sage-div"]}></div>
       <div className={styles["text"]}>
         <h1 className={styles["title"]}>VALORANT POCKET SAGE ASSOCIATION</h1>
@@ -31,7 +32,7 @@ const Home = () => {
           {searchInput}
         </TextField>
       </Box>
-    </div>
+    </GraphicalPage>
   );
 };
 export default Home;

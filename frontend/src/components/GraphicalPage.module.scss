@@ -1,0 +1,15 @@
+@import "../styles/variables.module.scss";
+
+
+.home-background {
+    display: flex;
+    flex-direction: column;
+    color: $lightgreen;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: $spacer-regular;
+    flex-grow: "1 1 auto";
+    position: relative;
+    width: 100%;
+}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Layout from "@/components/Layout";
 import "@/styles/globals.scss";
 import styles from "@/styles/variables.module.scss";
@@ -8,10 +9,15 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { Roboto } from "next/font/google";
+import { GraphQLClient } from "graphql-request";
 
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
+});
+
+export const client = new GraphQLClient("http://localhost:4000/graphql", {
+  credentials: "include",
 });
 
 const theme = createTheme({

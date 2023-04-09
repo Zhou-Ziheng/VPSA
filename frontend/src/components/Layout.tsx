@@ -1,10 +1,10 @@
-import React, { PropsWithChildren } from "react";
+import React, { ReactElement } from "react";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import Head from "next/head";
 import styles from "./Layout.module.scss";
 
-const Layout = ({ children }: PropsWithChildren) => {
+const Layout = ({ children }: { children: ReactElement }) => {
   return (
     <>
       <Head>
