@@ -28,7 +28,9 @@ const NavBar = () => {
           <Link href="/resources">
             <Button color="inherit">Resources</Button>
           </Link>
-
+          <Link href="/failed">
+            <Button color="inherit">404</Button>
+          </Link>
           {data != null ? (
             <>
               <Button color="inherit" onClick={logout}>
