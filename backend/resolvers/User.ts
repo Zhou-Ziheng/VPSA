@@ -101,7 +101,14 @@ export class UserResolver {
         user: mapUserToSimplifiedUser(user),
       };
     } else {
-      return { errors: [{ field: "unknown", message: "unknown error" }] };
+      return {
+        errors: [
+          {
+            field: "password",
+            message: "password incorrect",
+          },
+        ],
+      };
     }
   }
 
