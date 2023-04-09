@@ -13,6 +13,7 @@ import styles from "./NavBar.module.scss";
 import useMe from "@/hooks/useMe";
 import { useRef, useState } from "react";
 import HoverMenu from "material-ui-popup-state/HoverMenu";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import {
   usePopupState,
   bindHover,
@@ -59,14 +60,19 @@ const NavBar = () => {
                     button.current = ref;
                   }}
                   {...bindHover(popupState)}
+                  startIcon={
+                    data.user.isCertified ? (
+                      <CheckCircleOutlineIcon />
+                    ) : undefined
+                  }
                 >
                   {data.user.username}
                 </Button>
               </Link>
               <HoverMenu
                 {...bindMenu(popupState)}
-                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                transformOrigin={{ vertical: "top", horizontal: "left" }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                transformOrigin={{ vertical: "top", horizontal: "center" }}
               >
                 <MenuItem>
                   <h6>Profile</h6>
