@@ -1,0 +1,29 @@
+version: '3'
+services:
+  # Create frontend container
+  frontend: # Name of our service
+    build: ./frontend # path to dockerfile
+    ports: # Port binding to host from docker container
+      - "3000:3000" # Bind port 3000 of host to 3000 of container
+    container_name: vpsa-frontend-docker
+    restart: always # What to do if container crashes
+    links:
+      - backend
+  # Create backend container
+  backend:
+    # Create backend container  
+    build: ./backend
+    ports:
+      - "4000:4000"
+    container_name: vpsa-backend-docker
+    restart: always
+    links:
+      - vpsa-mongo
+      - vpsa-redis
+  # Create database container
+  vpsa-mongo:
+    container_name: vpsa-mongo
+    image: 'mongo:4'
+  vpsa-redis:
+    container_name: vpsa-redis
+    image: 'redis:4.0.11'

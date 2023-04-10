@@ -18,7 +18,7 @@ import "source-map-support/register";
 const main = async () => {
   const app = express();
 
-  const redisClient = new Redis(6379, "localhost");
+  const redisClient = new Redis(6379, process.env.REDIS || "localhost");
 
   let redisStore = new RedisStore({
     client: redisClient,
