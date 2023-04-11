@@ -26,7 +26,7 @@ const Home = () => {
                 <SearchIcon />
               </InputAdornment>
             ),
-            placeholder: "Find a Sage, ie. Player#NA1",
+            placeholder: "Find a Pocket Sage, ie. Player#NA1",
           }}
         >
           {searchInput}
