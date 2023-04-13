@@ -14,6 +14,7 @@ import { MyContext } from "./types";
 import cors from "cors";
 import path from "path";
 import "source-map-support/register";
+import { Counters } from "./dbConnector";
 
 const main = async () => {
   const app = express();
@@ -69,6 +70,15 @@ const main = async () => {
   app.listen(4000, () => {
     console.log("server started on locahost: 4000");
   });
+
+  const counter = await Counters.findOne({ type: "certificateId" });
+  if (!counter) {
+    const newCounter = new Counters({
+      type: "certificateId",
+      counter: 0,
+    });
+    newCounter.save();
+  }
 };
 
 main().catch((error) => {

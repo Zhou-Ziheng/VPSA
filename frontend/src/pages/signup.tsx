@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { client } from "./_app";
 import useMe from "@/hooks/useMe";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const query = gql`
   mutation Register($email: String!, $username: String!, $password: String!) {
@@ -25,12 +26,12 @@ const query = gql`
 
 const Login = () => {
   const router = useRouter();
-  const { data } = useMe();
+  const { data, isLoggedin } = useMe();
   useEffect(() => {
-    if (data != null) {
+    if (isLoggedin) {
       router.push("/");
     }
-  }, [router, data]);
+  }, [router, isLoggedin]);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [username, setUsername] = useState("");
@@ -41,6 +42,36 @@ const Login = () => {
   const [password2, setPassword2] = useState("");
   const [password2Error, setPassword2Error] = useState("");
   const [showPassword2, setShowPassword2] = useState(false);
+
+  const queryClient = useQueryClient();
+  const register = useMutation({
+    mutationFn: async (variables: {
+      email: string;
+      username: string;
+      password: string;
+    }) => {
+      return await client.request(query, variables);
+    },
+    onSuccess: async (data: any) => {
+      await queryClient.invalidateQueries({ queryKey: ["me"] });
+      if (data.register.errors) {
+        data.register.errors.forEach(
+          (error: { field: string; message: string }) => {
+            if (error.field === "email") {
+              setEmailError(error.message);
+            } else if (error.field === "username") {
+              setUsernameError(error.message);
+            } else if (error.field === "password") {
+              setPasswordError(error.message);
+            }
+          }
+        );
+      } else if (data.register.user) {
+        router.push("/");
+      }
+    },
+  });
+
   return (
     <GraphicalPage>
       <div className={styles["Login-Register"]}>
@@ -143,29 +174,8 @@ const Login = () => {
       <Button
         className={styles["Login-Submit"]}
         variant="contained"
-        onClick={async () => {
-          if (password !== password2) {
-            setPassword2Error("Passwords do not match");
-            return;
-          }
-          const data = (await client
-            .request(query, { email, username, password })
-            .catch((err: unknown) => {
-              console.log(err);
-            })) as any;
-          if (data.register.errors) {
-            data.register.errors.forEach(
-              (err: { field: string; message: string }) => {
-                if (err.field === "email") {
-                  setEmailError(err.message);
-                } else {
-                  setPasswordError(err.message);
-                }
-              }
-            );
-          } else {
-            router.push("/");
-          }
+        onClick={() => {
+          register.mutate({ email, username, password });
         }}
       >
         <p style={{ fontSize: "20px" }}>Sign up</p>

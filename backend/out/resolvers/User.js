@@ -105,7 +105,7 @@ let UserResolver = class UserResolver {
             user.save();
             return {
                 user: {
-                    isCertified: user.isCertified,
+                    isCertified: user.certificateLevel,
                     username: user.username,
                 },
             };

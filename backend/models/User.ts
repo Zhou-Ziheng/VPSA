@@ -1,8 +1,4 @@
-import {
-  DocumentType,
-  getModelForClass,
-  prop as Property,
-} from "@typegoose/typegoose";
+import { prop as Property } from "@typegoose/typegoose";
 import { Field as GqlField, ObjectType as GqlType } from "type-graphql";
 
 @GqlType()
@@ -26,7 +22,11 @@ export class User {
   @Property({ required: false })
   password!: string;
 
-  @GqlField((_type) => Boolean)
+  @GqlField((_type) => Number)
   @Property({ required: true })
-  isCertified!: boolean;
+  certificateLevel!: number;
+
+  @GqlField((_type) => Number, { nullable: true })
+  @Property({ required: false })
+  certificateNumber!: number;
 }

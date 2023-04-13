@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Users } from "../dbConnector";
+import { Counters, Users } from "../dbConnector";
 import { User } from "../models/User";
 import {
   Arg,
@@ -16,13 +16,15 @@ import { DocumentType } from "@typegoose/typegoose";
 
 const mapUserToSimplifiedUser = (user: DocumentType<User>): SimplifiedUser => {
   return {
-    isCertified: user.isCertified,
+    certificateLevel: user.certificateLevel,
     username: user.username,
+    certificateNumber: user.certificateNumber,
   };
 };
 
 interface SimplifiedUser {
-  isCertified: boolean;
+  certificateLevel: number;
+  certificateNumber: number | null;
   username: string;
 }
 @ObjectType()
@@ -113,6 +115,39 @@ export class UserResolver {
   }
 
   @Mutation(() => UserResponse, { nullable: true })
+  async certify(@Ctx() { req }: MyContext): Promise<UserResponse> {
+    const user = await Users.findById(req.session.userid);
+    if (!user) {
+      return {
+        errors: [
+          {
+            field: "login status",
+            message: "you are not logged in",
+          },
+        ],
+      };
+    }
+    user.certificateLevel = 1;
+
+    let counter = await Counters.findOne({ type: "certificateId" });
+    if (!counter) {
+      counter = await Counters.create({
+        type: "certificateId",
+        counter: 0,
+      });
+      counter.save();
+    }
+
+    user.certificateNumber = counter.counter;
+    counter.counter += 1;
+    counter.save();
+    user.save();
+    return {
+      user: mapUserToSimplifiedUser(user),
+    };
+  }
+
+  @Mutation(() => UserResponse, { nullable: true })
   async register(
     @Arg("email") email: string,
     @Arg("username") username: string,
@@ -134,7 +169,7 @@ export class UserResolver {
       email,
       username,
       password: await argon2.hash(password),
-      isCertified: false,
+      certificateLevel: 0,
     });
 
     try {

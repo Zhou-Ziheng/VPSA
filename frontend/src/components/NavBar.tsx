@@ -21,7 +21,7 @@ import {
 } from "material-ui-popup-state/hooks";
 
 const NavBar = () => {
-  const { data, logout } = useMe();
+  const { data, logout, isFetched, isLoggedin } = useMe();
   const button = useRef<HTMLButtonElement | null>(null);
 
   const popupState = usePopupState({
@@ -29,6 +29,8 @@ const NavBar = () => {
     popupId: "demoPopover",
     disableAutoFocus: true,
   });
+
+  console.log(data);
   return (
     <AppBar position="sticky" color="secondary">
       <Toolbar>
@@ -54,7 +56,7 @@ const NavBar = () => {
           <Link href="/resources">
             <Button color="inherit">Resources</Button>
           </Link>
-          {data != null ? (
+          {isLoggedin ? (
             <>
               <Link href="/me">
                 <Button
@@ -65,12 +67,12 @@ const NavBar = () => {
                   }}
                   {...bindHover(popupState)}
                   startIcon={
-                    data.user.certificateLevel == 1 ? (
+                    isFetched && data.me?.user.certificateLevel == 1 ? (
                       <CheckCircleOutlineIcon />
                     ) : undefined
                   }
                 >
-                  {data.user.username}
+                  {data.me?.user.username}
                 </Button>
               </Link>
               <HoverMenu
@@ -80,9 +82,6 @@ const NavBar = () => {
               >
                 <MenuItem>
                   <h6>Profile</h6>
-                </MenuItem>
-                <MenuItem>
-                  <h6>My account</h6>
                 </MenuItem>
                 <MenuItem
                   onClick={async () => {

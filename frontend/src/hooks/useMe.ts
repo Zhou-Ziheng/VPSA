@@ -1,10 +1,18 @@
-import { gql } from "graphql-request";
-import { client } from "../pages/_app";
+import { useRouter } from "next/router";
+import { gql, request } from "graphql-request";
+import { client, queryClient } from "../pages/_app";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 interface Me {
-  user: { username: string; certificateLevel: number };
+  me: {
+    user: {
+      username: string;
+      certificateLevel: number;
+      certificateNumber: number | null;
+    };
+  } | null;
 }
 const me = gql`
   query Me {
@@ -12,6 +20,7 @@ const me = gql`
       user {
         username
         certificateLevel
+        certificateNumber
       }
     }
   }
@@ -28,33 +37,31 @@ const logout = gql`
 `;
 
 const useMe = (): {
-  data: Me | null;
+  data: Me;
   logout: () => Promise<void>;
   isLoggedin: boolean;
-} => {
-  const [data, setData] = useState<null | Me>(null);
-
+} & Omit<UseQueryResult<unknown, unknown>, "data"> => {
   const cookie = Cookies.get("qid");
 
-  const [isLoggedin, setIsLoggedin] = useState<boolean>(cookie != null);
+  const router = useRouter();
 
-  useEffect(() => {
-    client.request(me).then((data) => {
-      setData((data as any).me);
-    });
-  }, [cookie]);
-
-  useEffect(() => {
-    setIsLoggedin(cookie != null);
-  }, [cookie]);
+  const result = useQuery({
+    queryKey: ["me"],
+    queryFn: async () => {
+      console.log("adfasfsadf");
+      return await client.request(me);
+    },
+  });
 
   return {
-    data,
+    ...result,
+    data: result.data as Me,
     logout: async () => {
+      router.push("/logout");
       await client.request(logout);
-      setData(null);
+      await queryClient.refetchQueries({ queryKey: ["me"] });
     },
-    isLoggedin,
+    isLoggedin: result.data != null && (result.data as Me).me !== null,
   };
 };
 

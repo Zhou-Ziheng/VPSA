@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { client } from "./_app";
 import useMe from "@/hooks/useMe";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const query = gql`
   query Login($email: String!, $password: String!) {
@@ -25,12 +26,35 @@ const query = gql`
 
 const Login = () => {
   const router = useRouter();
-  const { data } = useMe();
+  const { data, isLoggedin } = useMe();
+
+  const queryClient = useQueryClient();
+  const login = useMutation({
+    mutationFn: async (variables: { email: string; password: string }) => {
+      return await client.request(query, variables);
+    },
+    onSuccess: async (data: any) => {
+      await queryClient.invalidateQueries({ queryKey: ["me"] });
+      if (data.login.errors) {
+        data.login.errors.forEach(
+          (error: { field: string; message: string }) => {
+            if (error.field === "email") {
+              setEmailError(error.message);
+            } else if (error.field === "password") {
+              setPasswordError(error.message);
+            }
+          }
+        );
+      } else if (data.login.user) {
+        router.push("/");
+      }
+    },
+  });
   useEffect(() => {
-    if (data != null) {
+    if (isLoggedin) {
       router.push("/");
     }
-  }, [router, data]);
+  }, [isLoggedin, router]);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -91,26 +115,7 @@ const Login = () => {
       <Button
         className={styles["Login-Submit"]}
         variant="contained"
-        onClick={async () => {
-          const data = (await client
-            .request(query, { email, password })
-            .catch((err: unknown) => {
-              console.log(err);
-            })) as any;
-          if (data.login.errors) {
-            data.login.errors.forEach(
-              (err: { field: string; message: string }) => {
-                if (err.field === "email") {
-                  setEmailError(err.message);
-                } else {
-                  setPasswordError(err.message);
-                }
-              }
-            );
-          } else {
-            router.push("/");
-          }
-        }}
+        onClick={() => login.mutate({ email, password })}
       >
         <p style={{ fontSize: "20px" }}>Sign in</p>
       </Button>

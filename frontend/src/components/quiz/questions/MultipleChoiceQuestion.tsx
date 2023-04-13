@@ -42,7 +42,7 @@ const MultipleChoiceQuestion = ({
                   }
                   setError("");
                 }}
-                sx={{ fontSize: "20px" }}
+                sx={{ fontSize: "20px", textTransform: "lowercase" }}
                 variant={option == selected ? "contained" : "outlined"}
               >
                 {option}
