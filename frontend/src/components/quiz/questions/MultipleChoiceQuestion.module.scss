@@ -1,0 +1,19 @@
+@import "../../../styles/variables.module.scss";
+
+.multiple-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.question {
+    font-size: 40px;
+}
+.options {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.option {
+    display: block;
+}

@@ -47,6 +47,10 @@ const NavBar = () => {
             <Button color="inherit">About</Button>
           </Link>
 
+          <Link href="/pocket-sage-quiz">
+            <Button color="inherit">Get Certified</Button>
+          </Link>
+
           <Link href="/resources">
             <Button color="inherit">Resources</Button>
           </Link>
@@ -61,7 +65,7 @@ const NavBar = () => {
                   }}
                   {...bindHover(popupState)}
                   startIcon={
-                    data.user.isCertified ? (
+                    data.user.certificateLevel == 1 ? (
                       <CheckCircleOutlineIcon />
                     ) : undefined
                   }

@@ -17,7 +17,7 @@ const query = gql`
       }
       user {
         username
-        isCertified
+        certificateLevel
       }
     }
   }
