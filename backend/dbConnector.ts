@@ -10,7 +10,7 @@ const env = process.env.NODE_ENV || "development";
  **/
 
 mongoose
-  .connect("mongodb://" + (process.env.MONGO || "localhost") + "/vpsa")
+  .connect(process.env.MONGO || "mongodb://localhost/vpsa")
   .then(() => {
     console.log("connected to MongoDB");
   })

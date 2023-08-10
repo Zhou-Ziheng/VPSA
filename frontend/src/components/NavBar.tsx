@@ -72,7 +72,7 @@ const NavBar = () => {
                     ) : undefined
                   }
                 >
-                  {data.me?.user.username}
+                  {data?.me?.user.username}
                 </Button>
               </Link>
               <HoverMenu
