@@ -17,6 +17,5 @@ EXPOSE 4000
 RUN npm run build
 
 ENV REDIS=vpsa-redis
-ENV MONGO=vpsa-mongo
 
 CMD ["node", "dist/server.js" ]

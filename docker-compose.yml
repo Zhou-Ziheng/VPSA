@@ -18,16 +18,10 @@ services:
     container_name: vpsa-backend-docker
     restart: always
     links:
-      - vpsa-mongo
       - vpsa-redis
+    env_file:
+      - ./backend/dbString.env
   # Create database container
-  vpsa-mongo:
-    container_name: vpsa-mongo
-    image: 'mongo:4'
-    ports:
-      - "27018:27017"
-    volumes:
-      - ./mongo:/data/db
   vpsa-redis:
     container_name: vpsa-redis
     image: 'redis:4.0.11'

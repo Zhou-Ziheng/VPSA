@@ -12,7 +12,11 @@ const Certificate = () => {
     }
   }, [isLoggedin, router]);
   return (
-    <>{data.me && <div>CERTIFICATE #{data.me.user.certificateNumber}</div>}</>
+    <>
+      {data && data.me && (
+        <div>CERTIFICATE #{data.me.user.certificateNumber}</div>
+      )}
+    </>
   );
 };
 
