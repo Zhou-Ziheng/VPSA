@@ -20,21 +20,18 @@ jobs:
       
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: fun
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
+        
       - name: set dbString
         run: echo MONGO=${{ secrets.MONGO }} > ./backend/dbString.env 
       - name: build images
         run: docker-compose build
       - name: tag images
         run: |
-          docker tag redis:4.0.11 sparkyfnay/vpsa_redis:${{ steps.meta.outputs.tags }} 
-          docker tag vpsa_backend sparkyfnay/vpsa_backend:${{ steps.meta.outputs.tags }} 
-          docker tag vpsa_frontend sparkyfnay/vpsa_frontend:${{ steps.meta.outputs.tags }} 
+          docker tag redis:4.0.11 sparkyfnay/vpsa_redis:${{ env.RELEASE_VERSION }}
+          docker tag vpsa_backend sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}
+          docker tag vpsa_frontend sparkyfnay/vpsa_frontend:${{ env.RELEASE_VERSION }}
       - name: push container
         run: |
-          docker push sparkyfnay/vpsa_redis:${{ steps.meta.outputs.tags }} 
-          docker push sparkyfnay/vpsa_backend:${{ steps.meta.outputs.tags }} 
-          docker push sparkyfnay/vpsa_frontend:${{ steps.meta.outputs.tags }} 
+          docker push sparkyfnay/vpsa_redis:${{ env.RELEASE_VERSION }}
+          docker push sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}
+          docker push sparkyfnay/vpsa_frontend:${{ env.RELEASE_VERSION }}
