@@ -21,7 +21,8 @@ jobs:
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-      
+      - name: fun
+        run: echo ${{ steps.meta.outputs.tags }} 
       - name: set dbString
         run: echo MONGO=${{ secrets.MONGO }} > ./backend/dbString.env 
       - name: build images
