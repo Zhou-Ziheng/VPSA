@@ -16,6 +16,30 @@ export class User {
 
   @GqlField((_type) => String)
   @Property({ required: false })
+  riotUsername!: string;
+
+  @GqlField((_type) => String)
+  @Property({ required: false })
+  authToken!: string;
+
+  @GqlField((_type) => Date)
+  @Property({ required: false })
+  authTokenExpiryDate!: Date;
+
+  @GqlField((_type) => String)
+  @Property({ required: false })
+  refreshToken!: string;
+
+  @GqlField((_type) => Date)
+  @Property({ required: false })
+  refreshTokenExpiryDate!: Date;
+
+  @GqlField((_type) => Number)
+  @Property({ required: false })
+  riotUserTag!: number;
+
+  @GqlField((_type) => String)
+  @Property({ required: false })
   PUUID!: string;
 
   @GqlField((_type) => String)

@@ -154,6 +154,7 @@ export class UserResolver {
     @Arg("password") password: string,
     @Ctx() { req }: MyContext
   ): Promise<UserResponse> {
+    console.log("register");
     if (await Users.exists({ email })) {
       return {
         errors: [
