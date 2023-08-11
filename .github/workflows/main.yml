@@ -26,7 +26,15 @@ jobs:
       
       - name: set dbString
         run: echo MONGO=${{ secrets.MONGO }} > ./backend/dbString.env 
-      - name: build container
+      - name: build images
         run: docker-compose build
+      - name: tag images
+        run: |
+          docker tag redis:4.0.11 sparkyfnay/vpsa_redis:${{ steps.meta.outputs.tags }} 
+          docker tag vpsa_backend sparkyfnay/vpsa_backend:${{ steps.meta.outputs.tags }} 
+          docker tag vpsa_frontend sparkyfnay/vpsa_frontend:${{ steps.meta.outputs.tags }} 
       - name: push container
-        run: docker push ${{ steps.meta.outputs.tags }}
+        run: |
+          docker push sparkyfnay/vpsa_redis:${{ steps.meta.outputs.tags }} 
+          docker push sparkyfnay/vpsa_backend:${{ steps.meta.outputs.tags }} 
+          docker push sparkyfnay/vpsa_frontend:${{ steps.meta.outputs.tags }} 
