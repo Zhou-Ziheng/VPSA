@@ -23,7 +23,7 @@ jobs:
 
       - name: set dbString
         run: |
-          echo MONGO=${{ secrets.MONGO }} >> ./backend/dbString.env 
+          echo "MONGO=${{ secrets.MONGO }}" >> ./backend/dbString.env 
           cat ./backend/dbString.env
       - name: build images
         run: docker-compose build
