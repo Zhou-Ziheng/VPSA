@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: deploy
         run: |
-          echo ${{ secrets.HETZNER_SSH }} | ~/.ssh/ssh
+          echo ${{ secrets.HETZNER_SSH }} > ~/.ssh/ssh
           ssh-add ~/.ssh/ssh
           ssh vpsa@5.161.116.44
           cd VPSA
