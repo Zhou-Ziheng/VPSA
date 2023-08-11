@@ -30,6 +30,8 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
+          docker image ls
+          docker ps -a
         
         
       - name: tag images
