@@ -21,7 +21,9 @@ jobs:
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: fun
-        run: echo ${{ steps.meta.outputs.tags }} 
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
       - name: set dbString
         run: echo MONGO=${{ secrets.MONGO }} > ./backend/dbString.env 
       - name: build images
