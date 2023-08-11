@@ -25,6 +25,13 @@ jobs:
         run: echo MONGO=${{ secrets.MONGO }} > ./backend/dbString.env 
       - name: build images
         run: docker-compose build
+        
+      - name: fun
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+        
+        
       - name: tag images
         run: |
           docker tag redis:4.0.11 sparkyfnay/vpsa_redis:${{ env.RELEASE_VERSION }}
