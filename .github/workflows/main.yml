@@ -27,12 +27,7 @@ jobs:
           cat ./backend/dbString.env
       - name: build images
         run: docker-compose build
-
-      - name: fun
-        run: |
-          docker-compose up
-        
-        
+      
       - name: tag images
         run: |
           docker tag vpsa_backend sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}
