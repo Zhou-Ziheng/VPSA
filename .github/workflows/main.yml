@@ -30,6 +30,7 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
+          docker-compose up
           docker image ls
           docker ps -a
         
