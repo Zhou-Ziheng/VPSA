@@ -9,10 +9,10 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-      - name: deploy
-        run: |
-          echo ${{ secrets.HETZNER_SSH }} > ~/.ssh/ssh
-          ssh-add ~/.ssh/ssh
-          ssh vpsa@5.161.116.44
-          cd VPSA
-          ./deploy.sh
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.VPSA_PASSWORD }}
+          script: ./deploy.sh
