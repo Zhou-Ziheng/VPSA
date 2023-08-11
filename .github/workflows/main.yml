@@ -29,4 +29,4 @@ jobs:
       - name: build container
         run: docker-compose build
       - name: push container
-        run: docker push sparkyfnay/vpsa:${{ steps.meta.outputs.tags }}
+        run: docker push ${{ steps.meta.outputs.tags }}
