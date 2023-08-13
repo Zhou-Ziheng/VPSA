@@ -14,7 +14,7 @@ services:
     # Create backend container  
     build: ./backend
     ports:
-      - "8443:4000"
+      - "8080:4000"
     container_name: vpsa-backend-docker
     restart: always
     links:
