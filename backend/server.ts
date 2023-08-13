@@ -28,7 +28,7 @@ const main = async () => {
 
   app.use(
     cors({
-      origin: ["http://localhost:3000", "https://*.tonyzhou.ca", "http://*.tonyzhou.ca"],
+      origin: ["http://localhost:3000", "https://vpsa.tonyzhou.ca", "http://vpsa.tonyzhou.ca"],
       credentials: true,
     })
   );
