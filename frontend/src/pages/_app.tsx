@@ -26,7 +26,7 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-export const client = new GraphQLClient(`${process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'http://5.161.116.44:8080'}/graphql`, {
+export const client = new GraphQLClient(`${process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://vpsa.tonyzhou.ca:8443'}/graphql`, {
   credentials: "include",
 });
 
