@@ -36,3 +36,11 @@ jobs:
         run: |
           docker push sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}
           docker push sparkyfnay/vpsa_frontend:${{ env.RELEASE_VERSION }}
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.VPSA_PASSWORD }}
+          script: echo ${{ env.RELEASE_VERSION }} | ./deploy.sh
