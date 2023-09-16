@@ -16,7 +16,7 @@ export class User {
 
   @GqlField((_type) => String)
   @Property({ required: false })
-  riotUsername!: string;
+  tag!: string;
 
   @GqlField((_type) => String)
   @Property({ required: false })

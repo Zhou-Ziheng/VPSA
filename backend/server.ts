@@ -15,7 +15,7 @@ import cors from "cors";
 import path from "path";
 import "source-map-support/register";
 import { Counters } from "./dbConnector";
-
+import restRouter from "./routes";
 const main = async () => {
   const app = express();
 
@@ -70,6 +70,8 @@ const main = async () => {
   app.listen(4000, () => {
     console.log("server started on locahost: 4000");
   });
+
+  app.use("/rest", restRouter);
 
   const counter = await Counters.findOne({ type: "certificateId" });
   if (!counter) {
