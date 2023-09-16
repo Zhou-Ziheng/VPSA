@@ -16,6 +16,10 @@ export class User {
 
   @GqlField((_type) => String)
   @Property({ required: false })
+  tag!: string;
+
+  @GqlField((_type) => String)
+  @Property({ required: false })
   PUUID!: string;
 
   @GqlField((_type) => String)
