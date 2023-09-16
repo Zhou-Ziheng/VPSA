@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import styles from "./login.module.scss";
 import GraphicalPage from "@/components/GraphicalPage";
 import { TextField, Button, InputAdornment, IconButton } from "@mui/material";
 import { gql } from "graphql-request";
@@ -8,6 +7,7 @@ import { client } from "./_app";
 import useMe from "@/hooks/useMe";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import styles from "./login.module.scss";
 
 const query = gql`
   query Login($email: String!, $password: String!) {

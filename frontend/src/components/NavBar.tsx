@@ -9,7 +9,6 @@ import {
   Popover,
 } from "@mui/material";
 import Link from "next/link";
-import styles from "./NavBar.module.scss";
 import useMe from "@/hooks/useMe";
 import { useRef, useState } from "react";
 import HoverMenu from "material-ui-popup-state/HoverMenu";
@@ -19,6 +18,7 @@ import {
   bindHover,
   bindMenu,
 } from "material-ui-popup-state/hooks";
+import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
   const { data, logout, isFetched, isLoggedin } = useMe();

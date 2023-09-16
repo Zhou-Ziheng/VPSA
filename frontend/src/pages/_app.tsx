@@ -1,7 +1,5 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import "@/styles/globals.scss";
-import styles from "@/styles/variables.module.scss";
 import { ThemeProvider, createTheme } from "@mui/material";
 import type { AppProps } from "next/app";
 import "@fontsource/roboto/300.css";
@@ -13,6 +11,8 @@ import { GraphQLClient } from "graphql-request";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/react-query";
 import { serverUrl } from "@/constants";
+import "@/styles/globals.scss";
+import styles from "@/styles/variables.module.scss";
 
 export const queryClient = new QueryClient({
   defaultOptions: {

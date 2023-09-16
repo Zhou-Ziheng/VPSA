@@ -10,7 +10,7 @@ function randomIntFromInterval(min, max) { // min and max included
 
 async function seedDB() {
     // Connection URL
-    const uri = "mongodb://localhost:27017/";
+    const uri = "mongodb+srv://vpsa-tony:vpsa030927@cluster0.xuklhsh.mongodb.net/";
 
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
@@ -21,7 +21,7 @@ async function seedDB() {
         await client.connect();
         console.log("Connected correctly to server");
 
-        const collection = client.db("vpsa").collection("users");
+        const collection = client.db("test").collection("users");
 
         // The drop() command destroys all data from a collection.
         // Make sure you run it against proper database and collection.

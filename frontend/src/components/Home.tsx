@@ -1,12 +1,11 @@
 import { Box, Autocomplete, TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import styles from "./home.module.scss";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import SageBackground from "../../public/background.png";
 import GraphicalPage from "./GraphicalPage";
 import { serverUrl } from "@/constants";
 import ValorantLogo from "../../public/valorant.svg";
+import styles from "./home.module.scss";
 
 type Option = {
   username: string;

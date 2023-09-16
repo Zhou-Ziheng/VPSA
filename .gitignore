@@ -40,3 +40,5 @@ next-env.d.ts
 
 /mongo
 backend/*.env
+
+backend/scripts

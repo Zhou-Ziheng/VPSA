@@ -3,13 +3,12 @@ import { User } from "./models/User";
 import { getModelForClass } from "@typegoose/typegoose";
 import { Counter } from "./models/Counter";
 
-const env = process.env.NODE_ENV || "development";
-
 /**
  * Mongoose Connection
  **/
+
 mongoose
-  .connect(process.env.MONGO || "mongodb://localhost/vpsa")
+  .connect(process.env.MONGO || "mongodb://127.0.0.1/vpsa")
   .then(() => {
     console.log("connected to MongoDB");
   })
