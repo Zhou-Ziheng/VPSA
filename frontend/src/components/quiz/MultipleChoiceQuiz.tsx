@@ -23,7 +23,6 @@ const MultipleChoiceQuiz = ({
 
   const onSubmitQuestion = (answer: string) => {
     answers.current.push(answer);
-    console.log(answer);
     if (answer === questions[currentQuestion].correctAnswer) {
       correct.current++;
     }

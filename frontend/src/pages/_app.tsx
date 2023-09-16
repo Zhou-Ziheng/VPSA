@@ -12,6 +12,7 @@ import { Roboto } from "next/font/google";
 import { GraphQLClient } from "graphql-request";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/react-query";
+import { serverUrl } from "@/constants";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +27,7 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-export const client = new GraphQLClient(`${process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://vpsa.tonyzhou.ca:8443'}/graphql`, {
+export const client = new GraphQLClient(`${serverUrl}/graphql`, {
   credentials: "include",
 });
 

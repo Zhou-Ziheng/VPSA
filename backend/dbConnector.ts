@@ -8,7 +8,6 @@ const env = process.env.NODE_ENV || "development";
 /**
  * Mongoose Connection
  **/
-console.log(process.env.MONGO)
 mongoose
   .connect(process.env.MONGO || "mongodb://localhost/vpsa")
   .then(() => {

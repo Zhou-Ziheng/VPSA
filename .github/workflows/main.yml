@@ -31,7 +31,9 @@ jobs:
       - name: tag images
         run: |
           docker tag vpsa_backend sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}
+          docker tag vpsa_backend sparkyfnay/vpsa_backend:latest
           docker tag vpsa_frontend sparkyfnay/vpsa_frontend:${{ env.RELEASE_VERSION }}
+          docker tag vpsa_frontend sparkyfnay/vpsa_frontend:latest
       - name: push container
         run: |
           docker push sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}

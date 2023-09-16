@@ -48,7 +48,6 @@ const useMe = (): {
   const result = useQuery({
     queryKey: ["me"],
     queryFn: async () => {
-      console.log("adfasfsadf");
       return await client.request(me);
     },
   });

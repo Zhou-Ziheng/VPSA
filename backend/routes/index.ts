@@ -10,6 +10,7 @@ router.get("/certifiedAndValidatedUsers", async (req, res) => {
 
   if (!username) {
     res.status(400).send("username is required");
+    return;
   }
 
   const a = await Users.find({
@@ -20,18 +21,19 @@ router.get("/certifiedAndValidatedUsers", async (req, res) => {
     tag: {
       $regex: new RegExp(`^${tag ?? ""}`, "i"),
     },
+  })
+    .sort("username")
+    .limit(10);
+
+  const ret = a.map((user) => {
+    return {
+      username: user.username,
+      tag: user.tag,
+      certificateLevel: user.certificateLevel,
+      label: user.username + "#" + user.tag,
+    };
   });
 
-  const ret = a
-    .map((user) => {
-      return {
-        username: user.username,
-        tag: user.tag,
-        certificateLevel: user.certificateLevel,
-      };
-    })
-    .sort();
-  console.log(ret);
   res.send(ret.slice(0, 5));
 });
 

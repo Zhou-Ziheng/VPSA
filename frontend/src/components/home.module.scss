@@ -19,3 +19,15 @@
     top: 0;
 }
 
+
+.dropdown-li{
+    display: flex;
+    flex-direction: row;
+    padding: $spacer-2;
+    gap: $spacer-1;
+}
+.dropdown-tag{
+    background-color: $lightgray;
+    padding: $spacer-1;
+    border-radius: 5px;
+}

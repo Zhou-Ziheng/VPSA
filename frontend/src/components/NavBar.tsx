@@ -30,7 +30,6 @@ const NavBar = () => {
     disableAutoFocus: true,
   });
 
-  console.log(data);
   return (
     <AppBar position="sticky" color="secondary">
       <Toolbar>
