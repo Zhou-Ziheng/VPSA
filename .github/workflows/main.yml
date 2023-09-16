@@ -36,8 +36,8 @@ jobs:
           docker tag vpsa_frontend sparkyfnay/vpsa_frontend:latest
       - name: push container
         run: |
-          docker push sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}
-          docker push sparkyfnay/vpsa_frontend:${{ env.RELEASE_VERSION }}
+          docker push --all-tags sparkyfnay/vpsa_backend:${{ env.RELEASE_VERSION }}
+          docker push --all-tags sparkyfnay/vpsa_frontend:${{ env.RELEASE_VERSION }}
 
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
