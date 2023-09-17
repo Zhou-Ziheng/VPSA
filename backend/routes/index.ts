@@ -66,7 +66,6 @@ router.get("/getCertificate/:username/:tag", async (req, res) => {
       course: "Introduction to Pocket Sages",
     },
   ]);
-  fs.writeFileSync("certificate.pdf", pdf);
   const pdfBuffer = Buffer.from(pdf);
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader(
