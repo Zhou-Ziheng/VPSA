@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pdfme/generator": "^2.2.0",
     "@typegoose/typegoose": "^11.0.0",
     "@types/cookie-parser": "^1.4.3",
     "@types/express": "^4.17.17",
