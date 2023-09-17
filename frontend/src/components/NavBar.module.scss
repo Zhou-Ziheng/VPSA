@@ -4,4 +4,11 @@
     display: flex;
     gap: $spacer-wide;
     margin-right: $spacer-wide;
+
+    // @media (max-width: 768px) {
+    //     flex-direction: column; // Stack buttons vertically on smaller screens
+    //     align-items: flex-start; // Align buttons to the left
+    //     padding-top: 10px; // Add some spacing at the top
+    //   }
+
 }
