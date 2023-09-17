@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <GraphicalPage>
-      <div className={styles["sage-div"]}></div>
+      {/* <div className={styles["sage-div"]}></div> */}
       <div className={styles["text"]}>
         <h1 className={styles["title"]}>VALORANT POCKET SAGE ASSOCIATION</h1>
       </div>

@@ -3,18 +3,28 @@
 .title {
     font-family:"Valorant";
     z-index: 100;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    @media (max-width: 768px) { 
+        padding-top: $padding-top;
+    }
 }
 
 .search {
     width: 500px !important;
+
+    @media (max-width: 768px) { 
+        width: 90vw !important;
+    }
 }
 
-.sage-div{
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
+// .sage-div{
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+// }
 
 .dropdown-li{
     display: flex;
@@ -22,6 +32,7 @@
     padding: $spacer-2;
     gap: $spacer-1;
 }
+
 .dropdown-tag{
     background-color: $lightgray;
     padding: $spacer-1;
@@ -43,6 +54,9 @@
         /* Adjust the background position for smaller screens */
         position: relative;
         width: 100%;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 }
   
