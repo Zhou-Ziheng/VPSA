@@ -8,7 +8,7 @@ const loadPDF = async (url: string, filename = "vpsa") => {
   window.open(pdfUrl, "_blank");
 };
 
-export const loadCertificate = (username: string | undefined, tag: string) => {
+export const loadCertificate = (username?: string, tag?: string) => {
   const url = `${serverUrl}/rest/getCertificate/${username}/${tag}`;
   return loadPDF(url, `${username}_${tag}`);
 };
