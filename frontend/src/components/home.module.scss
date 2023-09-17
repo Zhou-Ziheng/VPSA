@@ -27,3 +27,22 @@
     padding: $spacer-1;
     border-radius: 5px;
 }
+
+.background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40vh;
+    width: 30vw; /* Adjust the width and height as needed */
+    background-image: url("../../public/sageback.png");
+    background-size: cover; /* or 'contain' depending on your preference */
+    opacity: 1; /* Adjust the opacity as needed */
+    z-index: 1; /* Place it behind other content */
+
+    @media (max-width: 768px) {
+        /* Adjust the background position for smaller screens */
+        position: relative;
+        width: 100%;
+    }
+}
+  

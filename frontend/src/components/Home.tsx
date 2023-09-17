@@ -39,6 +39,7 @@ const Home = () => {
       <div className={styles["text"]}>
         <h1 className={styles["title"]}>VALORANT POCKET SAGE ASSOCIATION</h1>
       </div>
+      <div className={styles["background"]} />
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
         <Autocomplete
           options={options}
