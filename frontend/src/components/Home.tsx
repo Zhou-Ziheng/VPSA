@@ -6,6 +6,7 @@ import GraphicalPage from "./GraphicalPage";
 import { serverUrl } from "@/constants";
 import ValorantLogo from "../../public/valorant.svg";
 import styles from "./home.module.scss";
+import { loadCertificate } from "@/utils/load-pdf";
 
 type Option = {
   username: string;
@@ -37,7 +38,7 @@ const Home = () => {
     <GraphicalPage>
       <div className={styles["sage-div"]}></div>
       <div className={styles["text"]}>
-        <h1 className={styles["title"]}>VALORANT POCKET SAGE ASSOCIATION</h1>
+        <h1 className={styles["title"]}>vAlorant POCKET SAGE ASSOCIaTION</h1>
       </div>
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
         <Autocomplete
@@ -45,7 +46,14 @@ const Home = () => {
           filterOptions={(x) => x}
           noOptionsText="No Sages found"
           renderOption={(props, options) => (
-            <li {...props} key={options.username + "#" + options.tag}>
+            <li
+              {...props}
+              key={options.username + "#" + options.tag}
+              onClick={(e) => {
+                e.preventDefault();
+                loadCertificate(options.username, options.tag);
+              }}
+            >
               <Box className={styles["dropdown-li"]}>
                 <Image src={ValorantLogo} alt="ValorantLogo" height={25} />
                 {<p>{options.username}</p>}
@@ -59,10 +67,10 @@ const Home = () => {
             <TextField
               {...params}
               className={styles.search}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setSearchInput(e.target.value);
                 if (e.target.value === "") setOptions([]);
-                else getDropdownOptions(e.target.value);
+                else await getDropdownOptions(e.target.value);
               }}
               InputProps={{
                 ...params.InputProps,

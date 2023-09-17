@@ -19,6 +19,7 @@ const mapUserToSimplifiedUser = (user: DocumentType<User>): SimplifiedUser => {
     certificateLevel: user.certificateLevel,
     username: user.username,
     certificateNumber: user.certificateNumber,
+    tag: user.tag,
   };
 };
 
@@ -26,6 +27,7 @@ interface SimplifiedUser {
   certificateLevel: number;
   certificateNumber: number | null;
   username: string;
+  tag: string;
 }
 @ObjectType()
 class FieldError {
@@ -81,7 +83,7 @@ export class UserResolver {
         errors: [
           {
             field: "email",
-            message: "that username or email doesn't exist",
+            message: "that email doesn't exist",
           },
         ],
       };

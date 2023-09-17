@@ -19,10 +19,13 @@ import {
   bindMenu,
 } from "material-ui-popup-state/hooks";
 import styles from "./NavBar.module.scss";
+import { useRouter } from "next/router";
 
 const NavBar = () => {
   const { data, logout, isFetched, isLoggedin } = useMe();
   const button = useRef<HTMLButtonElement | null>(null);
+
+  const router = useRouter();
 
   const popupState = usePopupState({
     variant: "popover",
@@ -79,16 +82,33 @@ const NavBar = () => {
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 transformOrigin={{ vertical: "top", horizontal: "center" }}
               >
-                <MenuItem>
-                  <h6>Profile</h6>
-                </MenuItem>
+                {isFetched && data.me?.user.certificateLevel == 1 ? (
+                  <MenuItem
+                    href="/see-certificate"
+                    onClick={async () => {
+                      popupState.close();
+                      router.push("/certificate");
+                    }}
+                  >
+                    <h6> See Certificate</h6>
+                  </MenuItem>
+                ) : (
+                  <MenuItem
+                    href="/pocket-sage-quiz"
+                    onClick={async () => {
+                      popupState.close();
+                    }}
+                  >
+                    <h6>Get Certified</h6>
+                  </MenuItem>
+                )}
                 <MenuItem
                   onClick={async () => {
                     popupState.close();
                     await logout();
                   }}
                 >
-                  <h6>Sign out</h6>
+                  <h6>Sign Out</h6>
                 </MenuItem>
               </HoverMenu>
             </>

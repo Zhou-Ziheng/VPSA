@@ -11,6 +11,7 @@ interface Me {
       username: string;
       certificateLevel: number;
       certificateNumber: number | null;
+      tag: string;
     };
   } | null;
 }
@@ -21,6 +22,7 @@ const me = gql`
         username
         certificateLevel
         certificateNumber
+        tag
       }
     }
   }
