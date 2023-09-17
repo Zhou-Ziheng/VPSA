@@ -3,6 +3,9 @@ import TextPage from "../components/TextPage";
 
 const About = () => (
   <TextPage>
+    <Typography variant="h3">Our Story</Typography>
+    <Typography>
+    </Typography>
     <Typography variant="h3">What is a Pocket Sage?</Typography>
     <Typography>
       In Valorant, a pocket Sage is a player who offers support and guidance to
