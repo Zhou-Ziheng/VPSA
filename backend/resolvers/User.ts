@@ -27,7 +27,7 @@ interface SimplifiedUser {
   certificateLevel: number;
   certificateNumber: number | null;
   username: string;
-  tag: string;
+  tag: string | null;
 }
 @ObjectType()
 class FieldError {
