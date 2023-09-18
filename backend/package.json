@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "type": "tsc -w",
-    "build": "tsc",
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "copyfiles --error \"./assets/pdf-gen/*\" dist",
     "start": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -42,6 +43,8 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.0.2"
+    "@faker-js/faker": "^8.0.2",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^5.0.1"
   }
 }

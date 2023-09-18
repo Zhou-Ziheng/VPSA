@@ -2,13 +2,15 @@ const { generate } = require("@pdfme/generator");
 const fs = require("fs");
 const path = require("path");
 
-const template = require("./template.json");
+const template = require("../assets/pdf-gen/template.json");
 
 type Inputs = [{ name: string; course: string }];
 
 const font = {
   Ethos: {
-    data: fs.readFileSync(path.join(__dirname, "Hiragino-Mincho-ProN.otf")),
+    data: fs.readFileSync(
+      path.join(__dirname, "../assets/pdf-gen/Hiragino-Mincho-ProN.otf")
+    ),
     fallback: true,
   },
 };
