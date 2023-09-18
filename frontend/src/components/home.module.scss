@@ -29,7 +29,8 @@
 .dropdown-li{
     display: flex;
     flex-direction: row;
-    padding: $spacer-2;
+    padding-top: $spacer-2;
+    padding-bottom: $spacer-2;
     gap: $spacer-1;
 }
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import GraphicalPage from "./GraphicalPage";
 import { serverUrl } from "@/constants";
-import ValorantLogo from "../../public/valorant.svg";
+import SageSlow from "../../public/TX_Sage_Q.png";
 import styles from "./home.module.scss";
 import { loadCertificate } from "@/utils/load-pdf";
 
@@ -56,7 +56,12 @@ const Home = () => {
               }}
             >
               <Box className={styles["dropdown-li"]}>
-                <Image src={ValorantLogo} alt="ValorantLogo" height={25} />
+                <Image
+                  src={SageSlow}
+                  alt="SageSlow"
+                  height={23}
+                  style={{ padding: "2px" }}
+                />
                 {<p>{options.username}</p>}
                 <Box className={styles["dropdown-tag"]}>
                   {<p style={{ fontSize: "10px" }}>{options.tag}</p>}
