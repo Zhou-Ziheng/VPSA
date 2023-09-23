@@ -119,6 +119,13 @@ const Login = () => {
       >
         <p style={{ fontSize: "20px" }}>Sign in</p>
       </Button>
+      <Button
+        className={styles["Login-Submit-Riot"]}
+        variant="contained"
+        onClick={() => login.mutate({ email, password })}
+      >
+        <p style={{ fontSize: "20px" }}>Sign in With Riot</p>
+      </Button>
     </GraphicalPage>
   );
 };

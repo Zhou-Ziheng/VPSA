@@ -6,6 +6,7 @@ $text-color: #acacac; // Main color
 $lightgreen: #3be0c3;
 $green: #16b199;
 $darkgreen: #38646b;
+$riot: #d53435;
 $spacer-1: 5px;
 $spacer-2: 10px;
 $spacer-regular: 25px;
@@ -28,4 +29,5 @@ $padding-side: 100px;
   padding-side:$padding-side;
   padding-top: $padding-top;
   text-color: $text-color;
+  riot: $riot;
 }
