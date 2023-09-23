@@ -26,7 +26,7 @@ const query = gql`
 
 const Login = () => {
   const router = useRouter();
-  const { data, isLoggedin } = useMe();
+  const { isLoggedin } = useMe();
 
   const queryClient = useQueryClient();
   const login = useMutation({
