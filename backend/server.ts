@@ -42,7 +42,7 @@ const main = async () => {
       name: COOKIE_NAME,
       store: redisStore,
       cookie: {
-        maxAge: 1000 * 60, // 10 years
+        maxAge: 1000 * 60 * 60, // 10 years
         httpOnly: false,
         sameSite: "lax",
         secure: "auto", // cookie only works in https
