@@ -2,10 +2,7 @@ import { serverUrl } from "@/constants";
 
 const loadPDF = async (url: string, filename = "vpsa") => {
   const res = await fetch(url);
-  const blob = await res.blob();
-
-  const pdfUrl = window.URL.createObjectURL(blob);
-  window.open(pdfUrl, "_blank");
+  return res;
 };
 
 export const loadCertificate = (username?: string, tag?: string) => {

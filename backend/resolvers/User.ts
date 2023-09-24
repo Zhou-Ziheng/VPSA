@@ -12,7 +12,7 @@ import {
 } from "type-graphql";
 import argon2 from "argon2";
 import { MyContext } from "../types";
-import { DocumentType } from "@typegoose/typegoose";
+import { DocumentType, errors } from "@typegoose/typegoose";
 
 const mapUserToSimplifiedUser = (user: DocumentType<User>): SimplifiedUser => {
   return {
@@ -69,6 +69,15 @@ export class UserResolver {
     return {
       user: mapUserToSimplifiedUser(user),
     };
+  }
+
+  @Query(() => UserResponse, { nullable: true })
+  async loginWithRiotCode(
+    @Arg("code") code: string,
+    @Ctx() { req }: MyContext
+  ): Promise<UserResponse> {
+    console.log(code);
+    return { errors: [{ field: "code", message: "not implemented" }] };
   }
 
   @Query(() => UserResponse, { nullable: true })

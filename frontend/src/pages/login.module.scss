@@ -8,7 +8,15 @@
 
 .Login-Input {
     width: 50ch;
-}.Login-Submit {
+}
+
+.Login-Submit {
     width: 40ch;
+}
+
+.Login-Submit-Riot {
+    width: 40ch;
+    background-color: $riot;
+    color: $gray;
 }
 

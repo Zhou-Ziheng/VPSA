@@ -26,7 +26,7 @@ const query = gql`
 
 const Login = () => {
   const router = useRouter();
-  const { data, isLoggedin } = useMe();
+  const { isLoggedin } = useMe();
 
   const queryClient = useQueryClient();
   const login = useMutation({
@@ -118,6 +118,13 @@ const Login = () => {
         onClick={() => login.mutate({ email, password })}
       >
         <p style={{ fontSize: "20px" }}>Sign in</p>
+      </Button>
+      <Button
+        className={styles["Login-Submit-Riot"]}
+        variant="contained"
+        onClick={() => login.mutate({ email, password })}
+      >
+        <p style={{ fontSize: "20px" }}>Sign in With Riot</p>
       </Button>
     </GraphicalPage>
   );

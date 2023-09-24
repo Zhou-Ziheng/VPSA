@@ -6,7 +6,7 @@ import GraphicalPage from "./GraphicalPage";
 import { serverUrl } from "@/constants";
 import SageSlow from "../../public/TX_Sage_Q.png";
 import styles from "./home.module.scss";
-import { loadCertificate } from "@/utils/load-pdf";
+import { useRouter } from "next/router";
 
 type Option = {
   username: string;
@@ -17,6 +17,7 @@ type Option = {
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [options, setOptions] = useState<Option[]>([]);
+  const router = useRouter();
 
   const getDropdownOptions = async (searchInput: string) => {
     const splitted = searchInput.split("#");
@@ -52,7 +53,9 @@ const Home = () => {
               key={options.username + "#" + options.tag}
               onClick={(e) => {
                 e.preventDefault();
-                loadCertificate(options.username, options.tag);
+                router.push(
+                  "/certificate/" + options.username + "/" + options.tag
+                );
               }}
             >
               <Box className={styles["dropdown-li"]}>

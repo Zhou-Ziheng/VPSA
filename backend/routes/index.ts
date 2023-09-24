@@ -3,6 +3,7 @@ import express from "express";
 
 import { Users } from "../dbConnector";
 import { genPDF } from "../pdf-gen";
+import { Readable } from "stream";
 
 const router = express.Router();
 
@@ -72,7 +73,10 @@ router.get("/getCertificate/:username/:tag", async (req, res) => {
     "Content-Disposition",
     `attachment; filename=${username}_${tag}.pdf`
   );
-  return res.send(pdfBuffer);
+  const stream = new Readable();
+  stream.push(pdfBuffer);
+  stream.push(null);
+  stream.pipe(res);
 });
 
 export default router;
