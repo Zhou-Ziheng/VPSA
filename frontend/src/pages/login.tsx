@@ -60,6 +60,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  let redirectUrl;
+  if (typeof window !== "undefined") {
+    redirectUrl = window?.location.host;
+  }
+  const clientId = "9e201369-2718-4f0a-b2e9-56832b3cc8a2";
+
   return (
     <GraphicalPage>
       <div className={styles["Login-Register"]}>
@@ -121,8 +127,18 @@ const Login = () => {
       </Button>
       <Button
         className={styles["Login-Submit-Riot"]}
+        // color="error"
+        sx={{
+          width: "40ch",
+          backgroundColor: "#d53435",
+          color: "#e8e1ee",
+        }}
         variant="contained"
-        onClick={() => login.mutate({ email, password })}
+        href={
+          redirectUrl
+            ? `https://auth.riotgames.com/authorize?redirect_uri=${redirectUrl}/oauth/callback&client_id=${clientId}&response_type=code&scope=openid`
+            : undefined
+        }
       >
         <p style={{ fontSize: "20px" }}>Sign in With Riot</p>
       </Button>
