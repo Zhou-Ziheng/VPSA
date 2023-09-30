@@ -39,7 +39,7 @@ const Home = () => {
     <GraphicalPage>
       {/* <div className={styles["sage-div"]}></div> */}
       <div className={styles["text"]}>
-        <h1 className={styles["title"]}>vAlorant POoCKET SAGE ASSOCIaTION</h1>
+        <h1 className={styles["title"]}>vAlorant POCKET SAGE ASSOCIaTION</h1>
       </div>
       <div className={styles["background"]} />
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
