@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import Head from "next/head";
