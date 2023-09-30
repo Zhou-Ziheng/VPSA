@@ -43,7 +43,7 @@ const PocketSageQuiz = () => {
     },
     {
       question: "How much does Sage heal allies?",
-      answers: ["30", "asd", "70", "100"],
+      answers: ["30", "10", "70", "100"],
       correctAnswer: "100",
     },
     {

@@ -60,11 +60,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  let redirectUrl;
-  if (typeof window !== "undefined") {
-    redirectUrl = window?.location.host;
-  }
   const clientId = "9e201369-2718-4f0a-b2e9-56832b3cc8a2";
+  let redirectUrl = "https://vpsa.tonyzhou.ca/";
+  const referrer =
+    process.env.NODE_ENV === "development"
+      ? "https://vpsa.tonyzhou.ca/redirect"
+      : "https://vpsa.tonyzhou.ca/oauth/callback";
+  if (typeof window !== "undefined") {
+    redirectUrl = `https://auth.riotgames.com/authorize?redirect_uri=${referrer}&client_id=${clientId}&response_type=code&scope=openid`;
+  }
+
+  const redirect = () => {
+    if (typeof window !== "undefined") {
+      window.location.href = redirectUrl;
+    }
+  };
 
   return (
     <GraphicalPage>
@@ -123,7 +133,7 @@ const Login = () => {
         variant="contained"
         onClick={() => login.mutate({ email, password })}
       >
-        <p style={{ fontSize: "20px" }}>Sign in</p>
+        <div style={{ fontSize: "20px" }}>Sign in</div>
       </Button>
       <Button
         className={styles["Login-Submit-Riot"]}
@@ -134,13 +144,9 @@ const Login = () => {
           color: "#e8e1ee",
         }}
         variant="contained"
-        href={
-          redirectUrl
-            ? `https://auth.riotgames.com/authorize?redirect_uri=${redirectUrl}/oauth/callback&client_id=${clientId}&response_type=code&scope=openid`
-            : undefined
-        }
+        onClick={() => redirect()}
       >
-        <p style={{ fontSize: "20px" }}>Sign in With Riot</p>
+        <div style={{ fontSize: "20px" }}>Sign in With Riot</div>
       </Button>
     </GraphicalPage>
   );
