@@ -106,7 +106,7 @@ export class UserResolver {
       body: formData,
     })
       .then(async (res) => {
-        console.log(await res);
+        console.log(JSON.stringify(await res));
         return res.json();
       })
       .then((json) => {
