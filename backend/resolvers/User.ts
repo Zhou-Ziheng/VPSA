@@ -93,6 +93,7 @@ export class UserResolver {
       formData.append("redirect_uri", "https://vpsa.tonyzhou.ca/redirect");
     }
 
+    console.log(process.env.RSOKey);
     const token = await fetch(tokenUrl, {
       method: "POST",
       headers: {
@@ -114,6 +115,7 @@ export class UserResolver {
         };
       });
 
+    console.log(token);
     const riotAPI = "https://americas.api.riotgames.com";
     const path = "/riot/account/v1/accounts/me";
     const riotUser = await fetch(riotAPI + path, {
@@ -124,6 +126,7 @@ export class UserResolver {
 
     const { puuid, gameName, tagLine } = riotUserJson;
 
+    console.log(riotUserJson);
     const vpsaUser = await Users.findOne({ PUUID: puuid });
     if (req.session.userid) {
       const user = await Users.findById(req.session.userid);
@@ -149,6 +152,7 @@ export class UserResolver {
 
     if (vpsaUser == null) {
       // create a new user
+      console.log(gameName);
       const newUser = await Users.create({
         username: gameName,
         tag: tagLine,
