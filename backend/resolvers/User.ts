@@ -13,6 +13,7 @@ import {
 import argon2 from "argon2";
 import { MyContext } from "../types";
 import { DocumentType, errors } from "@typegoose/typegoose";
+import request from "request";
 
 const mapUserToSimplifiedUser = (user: DocumentType<User>): SimplifiedUser => {
   return {
@@ -77,7 +78,95 @@ export class UserResolver {
     @Ctx() { req }: MyContext
   ): Promise<UserResponse> {
     console.log(code);
-    return { errors: [{ field: "code", message: "not implemented" }] };
+    const provider = "https://auth.riotgames.com";
+    const tokenUrl = provider + "/token";
+    const clientID = "9e201369-2718-4f0a-b2e9-56832b3cc8a2";
+
+    const formData = new URLSearchParams();
+    formData.append("grant_type", "authorization_code");
+    formData.append("code", code);
+    if (process.env.NODE_ENV === "production") {
+      formData.append(
+        "redirect_uri",
+        "https://vpsa.tonyzhou.ca/oauth/callback"
+      );
+    } else {
+      formData.append("redirect_uri", "https://vpsa.tonyzhou.ca/redirect");
+    }
+
+    const token = await fetch(tokenUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${Buffer.from(
+          `${clientID}:${process.env.RSOKey}`
+        ).toString("base64")}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: formData,
+    })
+      .then(async (res) => res.json())
+      .then((json) => {
+        return {
+          refresh_token: json.refresh_token,
+
+          id_token: json.id_token,
+
+          access_token: json.access_token,
+        };
+      });
+
+    const riotAPI = "https://americas.api.riotgames.com";
+    const path = "/riot/account/v1/accounts/me";
+    const riotUser = await fetch(riotAPI + path, {
+      headers: { Authorization: `Bearer ${(token as any).access_token}` },
+    });
+
+    const riotUserJson = await riotUser.json();
+
+    const { puuid, gameName, tagLine } = riotUserJson;
+
+    const vpsaUser = await Users.findOne({ PUUID: puuid });
+    if (req.session.userid) {
+      const user = await Users.findById(req.session.userid);
+      if (user && !user.PUUID && !vpsaUser) {
+        // loggedin, not linkeded, no connected account
+        user.PUUID = puuid;
+        user.tag = tagLine;
+        user.username = gameName;
+        user.save();
+        return {
+          user: mapUserToSimplifiedUser(user),
+        };
+      } else if (user && user.PUUID && vpsaUser) {
+        // loggedin, linkeded, has connected account
+        return {
+          user: mapUserToSimplifiedUser(vpsaUser),
+        };
+      } else if (user && !user.PUUID && vpsaUser) {
+        // loggedin, not linked, has connected account
+        return { errors: [{ field: "account", message: "duplicate account" }] };
+      }
+    }
+
+    if (vpsaUser == null) {
+      // create a new user
+      const newUser = await Users.create({
+        username: gameName,
+        tag: tagLine,
+        PUUID: puuid,
+        certificateLevel: 0,
+      });
+      await newUser.save();
+      req.session.userid = newUser._id.toString();
+      return {
+        user: mapUserToSimplifiedUser(newUser),
+      };
+    }
+
+    req.session.userid = vpsaUser._id.toString();
+    return {
+      user: mapUserToSimplifiedUser(vpsaUser),
+    };
   }
 
   @Query(() => UserResponse, { nullable: true })
