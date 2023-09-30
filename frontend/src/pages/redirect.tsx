@@ -19,7 +19,7 @@ const Redirect = () => {
 
     // Construct the final redirect URL with remaining query parameters
     const queryString = new URLSearchParams(encode(query));
-    const redirectUrl = `${referrerUrl}?${queryString}`;
+    const redirectUrl = `http://localhost:3000?${queryString}`;
 
     // Redirect the user to the referral URL with the additional query parameters
     window.location.href = redirectUrl;
