@@ -48,8 +48,8 @@ const PocketSageQuiz = () => {
     },
     {
       question: "What is the cooldown time for Sage's Heal Orb ability?",
-      answers: ["20 seconds", "25 seconds", "30 seconds", "None of the above"],
-      correctAnswer: "30 seconds",
+      answers: ["25 seconds", "35 seconds", "45 seconds", "None of the above"],
+      correctAnswer: "45 seconds",
     },
     {
       question: "How much does Sage heal herself?",
