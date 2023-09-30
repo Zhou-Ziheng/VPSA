@@ -13,7 +13,6 @@ import {
 import argon2 from "argon2";
 import { MyContext } from "../types";
 import { DocumentType, errors } from "@typegoose/typegoose";
-import request from "request";
 
 const mapUserToSimplifiedUser = (user: DocumentType<User>): SimplifiedUser => {
   return {
