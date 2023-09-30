@@ -93,6 +93,7 @@ export class UserResolver {
       formData.append("redirect_uri", "https://vpsa.tonyzhou.ca/redirect");
     }
 
+    console.log(formData);
     console.log(process.env.RSOKey);
     const token = await fetch(tokenUrl, {
       method: "POST",
@@ -104,7 +105,10 @@ export class UserResolver {
       },
       body: formData,
     })
-      .then(async (res) => res.json())
+      .then(async (res) => {
+        console.log(await res);
+        return res.json();
+      })
       .then((json) => {
         return {
           refresh_token: json.refresh_token,
@@ -122,6 +126,7 @@ export class UserResolver {
       headers: { Authorization: `Bearer ${(token as any).access_token}` },
     });
 
+    console.log(riotUser);
     const riotUserJson = await riotUser.json();
 
     const { puuid, gameName, tagLine } = riotUserJson;
