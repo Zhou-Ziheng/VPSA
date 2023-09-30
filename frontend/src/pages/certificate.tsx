@@ -16,20 +16,15 @@ const Certificate = () => {
 
   const cards = [
     {
-      title: "Iron Pocket Saging",
-      description: data?.me?.user.certificateNumber
-        ? `CERTIFICATE #${data?.me?.user.certificateNumber}`
-        : "Not Completed",
+      title: "Introduction to Pocket Sages",
+      description:
+        data?.me?.user.certificateNumber != null
+          ? `CERTIFICATE #${data?.me?.user.certificateNumber}`
+          : "Not Completed",
       certificateLevel: 1,
     },
-    { title: "Bronze Saging", description: "Coming Soon!" },
-    { title: "Silver Saging", description: "Coming Soon!" },
-    { title: "Gold Saging", description: "Coming Soon!" },
-    { title: "Platinum Saging", description: "Coming Soon!" },
-    { title: "Diamond Saging", description: "Coming Soon!" },
-    { title: "Ascendant Saging", description: "Coming Soon!" },
-    { title: "Immortal Saging", description: "Coming Soon!" },
-    { title: "Radiant Pocket Saging", description: "Coming Soon!" },
+    { title: "Intermediate Pocket Sages", description: "Coming Soon!" },
+    { title: "Advanced Pocket Sages", description: "Coming Soon!" },
   ];
 
   const makeCard = (card: {
@@ -40,8 +35,8 @@ const Certificate = () => {
     <Box
       sx={{
         display: "flex",
-        "align-items": "center",
-        "justify-content": "center",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <Card
@@ -56,15 +51,19 @@ const Certificate = () => {
             padding: "20px",
             height: "100%",
             display: "flex",
-            "flex-direction": "column",
-            "justify-content": "flex-start",
+            flexDirection: "column",
+            justifyContent: "flex-start",
             gap: "10px",
-            "align-content": "left",
+            alignContent: "left",
           }}
           onClick={(e) => {
-            if (card.certificateLevel == 1) {
+            if (card.certificateLevel == 1 && data?.me?.user.certificateLevel) {
               e.preventDefault();
-              loadCertificate(data?.me?.user.username, data?.me?.user.tag);
+              router.push(
+                `certificate/${data?.me?.user.username}/${data?.me?.user.tag}`
+              );
+            } else {
+              router.push("/pocket-sage-quiz");
             }
           }}
         >
@@ -92,7 +91,7 @@ const Certificate = () => {
               display: "grid",
               gap: "3rem",
               width: "100%",
-              "grid-template-columns": "repeat(auto-fit, minmax(350px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
             }}
           >
             {cards.map(makeCard)}

@@ -13,6 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { serverUrl } from "@/constants";
 import "@/styles/globals.scss";
 import styles from "@/styles/variables.module.scss";
+import NoSSR from "react-no-ssr";
 
 export const queryClient = new QueryClient({
   defaultOptions: {

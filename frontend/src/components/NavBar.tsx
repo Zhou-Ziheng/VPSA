@@ -51,8 +51,8 @@ const NavBar = () => {
             <Button color="inherit">About</Button>
           </Link>
 
-          <Link href="/pocket-sage-quiz">
-            <Button color="inherit">Get Certified</Button>
+          <Link href="/certificate">
+            <Button color="inherit">Certificates</Button>
           </Link>
 
           <Link href="/resources">

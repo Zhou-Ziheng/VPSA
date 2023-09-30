@@ -25,7 +25,7 @@ const Callback = () => {
       const code = params.code;
       console.log("test");
       await client.request(query, { code });
-      window.location.href;
+      window.location.href = "/";
     };
     makeCallback();
   }, []);
