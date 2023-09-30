@@ -84,6 +84,7 @@ export class UserResolver {
     const formData = new URLSearchParams();
     formData.append("grant_type", "authorization_code");
     formData.append("code", code);
+    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === "production") {
       formData.append(
         "redirect_uri",
