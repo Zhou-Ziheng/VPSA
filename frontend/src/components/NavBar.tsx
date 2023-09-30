@@ -20,12 +20,14 @@ import {
 } from "material-ui-popup-state/hooks";
 import styles from "./NavBar.module.scss";
 import { useRouter } from "next/router";
+import useLoginWithRiot from "@/hooks/useLoginWithRiot";
 
 const NavBar = () => {
   const { data, logout, isFetched, isLoggedin } = useMe();
   const button = useRef<HTMLButtonElement | null>(null);
 
   const router = useRouter();
+  const { redirect, color } = useLoginWithRiot();
 
   const popupState = usePopupState({
     variant: "popover",
@@ -114,14 +116,17 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <Link href="/signup">
-                <Button variant="outlined">Sign up</Button>
-              </Link>
-              <Link href="/login">
-                <Button variant="contained" color="primary">
-                  Sign in
-                </Button>
-              </Link>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{
+                  backgroundColor: color,
+                  "&:hover": { backgroundColor: "#e04a4a" },
+                }}
+                onClick={redirect}
+              >
+                <h6>Sign in With Riot</h6>
+              </Button>
             </>
           )}
         </div>
