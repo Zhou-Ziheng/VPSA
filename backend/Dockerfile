@@ -18,4 +18,6 @@ RUN npm run build
 
 ENV REDIS=vpsa-redis
 
+ENV NODE_ENV=production
+
 CMD ["node", "dist/server.js" ]
