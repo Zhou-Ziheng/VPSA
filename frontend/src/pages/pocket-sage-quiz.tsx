@@ -126,7 +126,7 @@ const PocketSageQuiz = () => {
     setFinished(true);
     setCorrect(result.correct);
     setTotal(result.total);
-    if (result.correct == result.total) {
+    if ((result.correct/result.total) > 0.8) {
       updateCertification.mutate();
     }
   };
