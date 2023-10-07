@@ -41,61 +41,65 @@ const Home = () => {
       <div className={styles["text"]}>
         <h1 className={styles["title"]}>vAlorant POCKET SAGE ASSOCIaTION</h1>
       </div>
-      <div className={styles["background"]} />
-      <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-        <Autocomplete
-          options={options}
-          filterOptions={(x) => x}
-          noOptionsText="No Sages found"
-          renderOption={(props, options) => (
-            <li
-              {...props}
-              key={options.username + "#" + options.tag}
-              onClick={(e) => {
-                e.preventDefault();
-                router.push(
-                  "/certificate/" + options.username + "/" + options.tag
-                );
-              }}
-            >
-              <Box className={styles["dropdown-li"]}>
-                <Image
-                  src={SageSlow}
-                  alt="SageSlow"
-                  height={23}
-                  style={{ padding: "2px" }}
-                />
-                {<p>{options.username}</p>}
-                <Box className={styles["dropdown-tag"]}>
-                  {<p style={{ fontSize: "10px" }}>{options.tag}</p>}
+      <div className={styles["half"]}>
+        <div className={styles["background"]} />
+        {/* <Box sx={{ display: "flex", alignItems: "flex-end" }}> */}
+        <Box className={styles["search"]}>
+          <Autocomplete
+            options={options}
+            filterOptions={(x) => x}
+            noOptionsText="No Sages found"
+            renderOption={(props, options) => (
+              <li
+                {...props}
+                key={options.username + "#" + options.tag}
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push(
+                    "/certificate/" + options.username + "/" + options.tag
+                  );
+                }}
+              >
+                <Box className={styles["dropdown-li"]}>
+                  <Image
+                    src={SageSlow}
+                    alt="SageSlow"
+                    height={23}
+                    style={{ padding: "2px" }}
+                  />
+                  {<p>{options.username}</p>}
+                  <Box className={styles["dropdown-tag"]}>
+                    {<p style={{ fontSize: "10px" }}>{options.tag}</p>}
+                  </Box>
                 </Box>
-              </Box>
-            </li>
-          )}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              className={styles.search}
-              onChange={async (e) => {
-                setSearchInput(e.target.value);
-                if (e.target.value === "") setOptions([]);
-                else await getDropdownOptions(e.target.value);
-              }}
-              InputProps={{
-                ...params.InputProps,
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-                placeholder: "Find a Pocket Sage, ie. Player#NA1",
-              }}
-            >
-              {searchInput}
-            </TextField>
-          )}
-        />
-      </Box>
+              </li>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={styles.search}
+                onChange={async (e) => {
+                  setSearchInput(e.target.value);
+                  if (e.target.value === "") setOptions([]);
+                  else await getDropdownOptions(e.target.value);
+                }}
+                InputProps={{
+                  ...params.InputProps,
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                  placeholder: "Find a Pocket Sage, ie. Player#NA1",
+                }}
+              >
+                {searchInput}
+              </TextField>
+            )}
+          />
+        </Box>
+        <div className={styles["rightblank"]} />
+      </div>
     </GraphicalPage>
   );
 };
