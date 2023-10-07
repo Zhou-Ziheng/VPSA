@@ -6,24 +6,20 @@
     text-align: center;
     padding-left: 15px;
     padding-right: 15px;
-    padding-top: $padding-top;
-    
-    // display: flex;
-    // align-items: center;
+    padding-top: 100px;
+
     display: flex;
     align-items: center;
-
-    // @media (max-width: 768px) { 
-    //     padding-top: $padding-top;
-    // }
+    justify-content: center;
 }
 
 .half {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    justify-content: center;
-    padding-left: 0px;
+    // justify-content: center;
+    // box-sizing: border-box;
+    // padding-left: 0px;
 
     @media (max-width: 768px) { 
         flex-direction: column;
@@ -37,7 +33,7 @@
     // bottom: 0;
     // left: 0;
     flex: 15%;
-    height: 40vh;
+    height: 45vh;
     width: 40vw;
     // width: 100vw;
     // width: 100vw;
@@ -55,6 +51,7 @@
     @media (max-width: 768px) {
         /* Adjust the background position for smaller screens */
         position: relative;
+        // height: 40%;
         width: 100%;
         background-position: center center;
         background-size: contain;
