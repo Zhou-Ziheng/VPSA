@@ -87,10 +87,10 @@ export class UserResolver {
     if (process.env.NODE_ENV === "production") {
       formData.append(
         "redirect_uri",
-        "https://vpsa.tonyzhou.ca/oauth/callback"
+        "https://pocket-sage.com/oauth/callback"
       );
     } else {
-      formData.append("redirect_uri", "https://vpsa.tonyzhou.ca/redirect");
+      formData.append("redirect_uri", "https://pocket-sage.com/redirect");
     }
 
     console.log(formData);

@@ -32,6 +32,8 @@ const main = async () => {
         "http://localhost:3000",
         "https://vpsa.tonyzhou.ca",
         "http://vpsa.tonyzhou.ca",
+        "http://pocket-sage.com",
+        "http://www.pocket-sage.com",
       ],
       credentials: true,
     })
