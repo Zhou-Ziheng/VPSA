@@ -2,14 +2,16 @@
 
 
 .home-background {
-    display: flex;
+    // display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     color: $lightgreen;
     align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     height: 100%;
     gap: $spacer-regular;
-    flex-grow: "1 1 auto";
+    flex-grow: 1;
     position: relative;
     width: 100%;
 }

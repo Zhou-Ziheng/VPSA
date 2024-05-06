@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { Box, ThemeProvider, createTheme } from "@mui/material";
 import type { AppProps } from "next/app";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -56,9 +56,10 @@ export default function App({ Component, pageProps }: AppProps) {
           }}
         >
           <Layout>
-            <div
+            <Box
               style={{
                 flex: "1 1 auto",
+               "-webkit-flex": "1 1 auto",
                 display: "flex",
                 flexDirection: "column",
                 flexBasis: 0,
@@ -66,7 +67,7 @@ export default function App({ Component, pageProps }: AppProps) {
               }}
             >
               <Component {...pageProps} />
-            </div>
+            </Box>
           </Layout>
         </main>
       </QueryClientProvider>

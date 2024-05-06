@@ -67,7 +67,7 @@ const Tag = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      <iframe id="pdfIframe" width="100%" height="100%" />
+      <iframe id="pdfIframe" width="100%" height="100%" style={{flex: 1}}/>
     </GraphicalPage>
   );
 };
