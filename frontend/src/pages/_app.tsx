@@ -59,7 +59,6 @@ export default function App({ Component, pageProps }: AppProps) {
             <Box
               style={{
                 flex: "1 1 auto",
-               "-webkit-flex": "1 1 auto",
                 display: "flex",
                 flexDirection: "column",
                 flexBasis: 0,
